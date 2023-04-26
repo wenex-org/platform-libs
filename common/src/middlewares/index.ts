@@ -1,1 +1,1 @@
-export * from './middleware.module';
+export * from './x-request-id.middleware';

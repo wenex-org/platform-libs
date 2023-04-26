@@ -1,12 +1,12 @@
 import { isInt } from 'class-validator';
-import { Document, Types } from 'mongoose';
-import { isEmpty } from 'radash';
+import { Types } from 'mongoose';
 
 import type { JwtToken } from '../types';
 
 export const MongoId = (id?: string): Types.ObjectId => new Types.ObjectId(id);
 
-export const toPlain = <T = any>(data: any): T => JSON.parse(JSON.stringify(data));
+export const toPlain = <T = any>(data: any): T =>
+  JSON.parse(JSON.stringify(data));
 
 export const genCode = (len: number) => {
   if (!isInt(len)) throw new Error('type of len must be integer');
@@ -35,7 +35,10 @@ export const isAvailable = ({
   else return true;
 };
 
-export const aliases = (domains: { name: string; zones?: string[] }[], roles?: string[]) => {
+export const aliases = (
+  domains: { name: string; zones?: string[] }[],
+  roles?: string[],
+) => {
   const _aliases: string[] = [];
 
   domains.forEach((domain) => {
@@ -47,42 +50,9 @@ export const aliases = (domains: { name: string; zones?: string[] }[], roles?: s
   } else return _aliases;
 };
 
-export function nestedTransformation(data: any, transformer: any) {
-  if (data && Array.isArray(data)) {
-    const newArray = [];
-
-    // eslint-disable-next-line @typescript-eslint/no-for-in-array, fp/no-loops, guard-for-in
-    for (const key in data) {
-      newArray.push(nestedTransformation(data[key], transformer));
-    }
-
-    return newArray;
-  } else if (data && typeof data === 'object') {
-    if (data instanceof Document) data = JSON.parse(JSON.stringify(data));
-
-    if ('__v' in data) delete data.__v;
-
-    const newObj = {};
-
-    // eslint-disable-next-line fp/no-loops
-    for (const key in data) {
-      if (data && typeof data[key] === 'object') {
-        if (key.startsWith('$')) newObj[key] = data[key];
-        else newObj[transformer(key)] = nestedTransformation(data[key], transformer);
-      } else if (key.startsWith('$')) newObj[key] = data[key];
-      else newObj[transformer(key)] = data[key];
-    }
-
-    return newObj;
-  } else {
-    return data;
-  }
-}
-
 export const createSubject = ({ role, domain }: JwtToken) => {
   return role.split(' ').map((r) => `${r}@${domain}`);
 };
 
-export const isEntityExists = <T>(entity: T): boolean => !isEmpty(entity);
-
-export const generateCacheKey = (...keys: (number | string)[]) => keys.join(':');
+export const generateCacheKey = (...keys: (number | string)[]) =>
+  keys.join(':');
