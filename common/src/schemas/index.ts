@@ -1,2 +1,2 @@
 export * from './base.schema';
-export * from './debug.schema';
+export * from './subs.schema';

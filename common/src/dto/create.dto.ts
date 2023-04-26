@@ -1,28 +1,32 @@
-import { Exclude } from 'class-transformer';
-import { IsDateString, IsMongoId, IsNotEmpty, IsOptional, IsString } from 'class-validator';
-import { Types } from 'mongoose';
+import {
+  IsDate,
+  IsDateString,
+  IsFQDN,
+  IsMongoId,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 
 export class CreateDto<T> {
-  @Exclude()
-  _id?: Types.ObjectId;
-
   @IsMongoId()
   @IsNotEmpty()
   owner: string;
+
+  @IsOptional()
+  @IsMongoId({ each: true })
+  shares?: string[];
 
   @IsNotEmpty()
   @IsMongoId({ each: true })
   clients: string[];
 
   @IsOptional()
-  zones?: string[];
+  @IsFQDN(null, { each: true })
+  groups?: string[];
 
-  @IsOptional()
-  @IsMongoId({ each: true })
-  shares?: string[];
-
-  @IsOptional()
-  @IsDateString()
+  @IsDate()
+  @IsNotEmpty()
   created_at: Date;
 
   @IsMongoId()
@@ -33,8 +37,8 @@ export class CreateDto<T> {
   @IsOptional()
   created_in: string;
 
-  @IsOptional()
-  @IsDateString()
+  @IsDate()
+  @IsNotEmpty()
   updated_at?: Date;
 
   @IsMongoId()
@@ -45,8 +49,8 @@ export class CreateDto<T> {
   @IsOptional()
   updated_in?: string;
 
-  @IsOptional()
-  @IsDateString()
+  @IsDate()
+  @IsNotEmpty()
   deleted_at?: Date;
 
   @IsMongoId()
@@ -57,8 +61,8 @@ export class CreateDto<T> {
   @IsOptional()
   deleted_in?: string;
 
-  @IsOptional()
-  @IsDateString()
+  @IsDate()
+  @IsNotEmpty()
   restored_at?: Date;
 
   @IsMongoId()

@@ -1,4 +1,6 @@
-import { Test, TestingModule } from '@nestjs/testing';
+import type { TestingModule } from '@nestjs/testing';
+import { Test } from '@nestjs/testing';
+
 import { BlacklistedService } from './blacklisted.service';
 
 describe('BlacklistedService', () => {

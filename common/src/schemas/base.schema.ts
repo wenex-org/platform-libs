@@ -1,61 +1,66 @@
-import { Prop } from '@typegoose/typegoose';
+import { ModelOptions, Prop, Severity } from '@typegoose/typegoose';
+import { Types } from 'mongoose';
 
+@ModelOptions({ options: { allowMixed: Severity.ALLOW } })
 export class Schema<T> {
   @Prop({ type: String, required: true, index: true })
-  owner: string; // uid or cid of whom created this doc
-
-  @Prop({ type: [String], required: true, index: true })
-  clients: string[]; // _id of clients
-
-  @Prop({ type: [String], required: false, index: true })
-  zones?: string[];
+  owner: string;
 
   @Prop({ type: [String], required: false, index: true })
   shares?: string[];
 
-  @Prop({ type: Date, required: true, index: true, default: () => new Date() })
+  @Prop({ type: [String], required: true, index: true })
+  clients: string[];
+
+  @Prop({ type: [String], required: false, index: true })
+  groups?: string[];
+
+  @Prop({ type: Date, required: true, index: true })
   created_at: Date;
 
   @Prop({ type: String, required: true, index: true })
-  created_by: string; // who created this doc (client _id or user _id)
+  created_by: string;
 
   @Prop({ type: String, required: true, index: true })
-  created_in: string; // which app or client _id created this doc
+  created_in: string;
 
-  @Prop({ type: Date, required: false, index: true, sparse: true })
+  @Prop({ type: Date, required: false, index: true })
   updated_at?: Date;
 
-  @Prop({ type: String, required: false, index: true, sparse: true })
+  @Prop({ type: String, required: false, index: true })
   updated_by?: string;
 
-  @Prop({ type: String, required: false, index: true, sparse: true })
+  @Prop({ type: String, required: false, index: true })
   updated_in?: string;
 
-  @Prop({ type: Date, required: false })
+  @Prop({ type: Date, required: false, index: true })
   deleted_at?: Date;
 
-  @Prop({ type: String, required: false })
+  @Prop({ type: String, required: false, index: true })
   deleted_by?: string;
 
-  @Prop({ type: String, required: false })
+  @Prop({ type: String, required: false, index: true })
   deleted_in?: string;
 
-  @Prop({ type: Date, required: false })
+  @Prop({ type: Date, required: false, index: true })
   restored_at?: Date;
 
-  @Prop({ type: String, required: false })
+  @Prop({ type: String, required: false, index: true })
   restored_by?: string;
 
-  @Prop({ type: String, required: false })
+  @Prop({ type: String, required: false, index: true })
   restored_in?: string;
 
-  @Prop({ type: String, required: false })
+  @Prop({ type: String, required: false, index: true })
   version?: string;
 
   @Prop({ type: [String], required: false, index: true })
   tags?: string[];
 
-  constructor(data?: Partial<T>) {
+  @Prop({ type: Types.Subdocument, required: false, index: true })
+  attrs?: { [x: string]: boolean | number | string };
+
+  constructor(data?: Partial<Schema<T>>) {
     if (data) Object.assign(this, data);
   }
 }
