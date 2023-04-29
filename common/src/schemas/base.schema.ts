@@ -3,6 +3,9 @@ import { Types } from 'mongoose';
 
 @ModelOptions({ options: { allowMixed: Severity.ALLOW } })
 export class Schema<T> {
+  @Prop({ type: String, required: false, index: true })
+  ref?: string;
+
   @Prop({ type: String, required: true, index: true })
   owner: string;
 
@@ -54,11 +57,11 @@ export class Schema<T> {
   @Prop({ type: String, required: false, index: true })
   version?: string;
 
-  @Prop({ type: [String], required: false, index: true })
-  tags?: string[];
-
   @Prop({ type: Types.Subdocument, required: false, index: true })
   attrs?: { [x: string]: boolean | number | string };
+
+  @Prop({ type: [String], required: false, index: true })
+  tags?: string[];
 
   constructor(data?: Partial<Schema<T>>) {
     if (data) Object.assign(this, data);

@@ -8,6 +8,7 @@ export enum Action {
   Update = 'update',
   Delete = 'delete',
   Restore = 'restore',
+  Destroy = 'destroy',
 
   // Common
   CreateOwn = 'create:own',
@@ -15,16 +16,26 @@ export enum Action {
   UpdateOwn = 'update:own',
   DeleteOwn = 'delete:own',
   RestoreOwn = 'restore:own',
+  DestroyOwn = 'destroy:own',
 
-  CreateShared = 'create:shared',
-  ReadShared = 'read:shared',
-  UpdateShared = 'update:shared',
-  DeleteShared = 'delete:shared',
-  RestoreShared = 'restore:shared',
+  CreateShare = 'create:share',
+  ReadShare = 'read:share',
+  UpdateShare = 'update:share',
+  DeleteShare = 'delete:share',
+  RestoreShare = 'restore:share',
+  DestroyShare = 'destroy:share',
 
   CreateClient = 'create:client',
   ReadClient = 'read:client',
   UpdateClient = 'update:client',
   DeleteClient = 'delete:client',
   RestoreClient = 'restore:client',
+  DestroyClient = 'destroy:client',
+
+  CreateGroup = 'create:group',
+  ReadGroup = 'read:group',
+  UpdateGroup = 'update:group',
+  DeleteGroup = 'delete:group',
+  RestoreGroup = 'restore:group',
+  DestroyGroup = 'destroy:group',
 }
