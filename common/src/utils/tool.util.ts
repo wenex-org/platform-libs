@@ -53,6 +53,3 @@ export const aliases = (
 export const createSubject = ({ role, domain }: JwtToken) => {
   return role.split(' ').map((r) => `${r}@${domain}`);
 };
-
-export const generateCacheKey = (...keys: (number | string)[]) =>
-  keys.join(':');
