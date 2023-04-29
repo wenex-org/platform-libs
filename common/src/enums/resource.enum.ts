@@ -33,6 +33,29 @@ export enum Resource {
 
   Workflows = 'workflows',
 
+  Touch = 'touch:all',
+  TouchSMS = 'touch:sms',
+  TouchEmail = 'touch:email',
+  TouchWebpush = 'touch:webpush',
+
+  Thing = 'thing:all',
+  ThingDevices = 'thing:devices',
+  ThingSensors = 'thing:sensors',
+  ThingMetrics = 'thing:metrics',
+
+  Chat = 'chat:all',
+  ChatRooms = 'chat:rooms',
+  ChatMembers = 'chat:members',
+  ChatContacts = 'chat:contacts',
+  ChatMessages = 'chat:messages',
+  ChatSignaling = 'chat:signaling',
+
+  Financial = 'financial:all',
+  FinancialWallets = 'financial:wallets',
+  FinancialAccounts = 'financial:accounts',
+  FinancialInvoices = 'financial:invoices',
+  FinancialTransactions = 'financial:transactions',
+
   Business = 'business:all',
   BusinessServices = 'business:services',
   BusinessProducts = 'business:products',
