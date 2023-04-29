@@ -29,7 +29,7 @@ export class BlacklistedService {
     );
   }
 
-  public async del(str: string): Promise<number> {
-    return this.redisService.del(`${BLACKLISTED_PREFIX_KEY}:${str}`);
+  public async del(str: string, prefix?: string): Promise<number> {
+    return this.redisService.del(`${BLACKLISTED_PREFIX_KEY}:${prefix}:${str}`);
   }
 }
