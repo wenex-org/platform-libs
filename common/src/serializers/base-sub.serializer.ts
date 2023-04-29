@@ -1,7 +1,7 @@
 import { Exclude, Expose } from 'class-transformer';
 
 @Exclude()
-export class Serializer<T> {
+export class SubSerializer<T> {
   @Expose()
   id: string;
 
@@ -70,4 +70,4 @@ export class Serializer<T> {
   }
 }
 
-export class BaseSerializer extends Serializer<BaseSerializer> {}
+export class BaseSubSerializer extends SubSerializer<BaseSubSerializer> {}

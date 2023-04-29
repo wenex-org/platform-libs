@@ -88,7 +88,7 @@ export class CreateDto<T> {
   @IsString({ each: true })
   tags?: string[];
 
-  constructor(data?: Partial<CreateDto<T>>) {
+  constructor(data?: Partial<T>) {
     if (data) Object.assign(this, data);
   }
 }

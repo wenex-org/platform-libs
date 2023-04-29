@@ -1,18 +1,12 @@
-import {
-  IsMongoId,
-  IsNotEmpty,
-  IsObject,
-  IsOptional,
-  IsString,
-} from 'class-validator';
+import { IsMongoId, IsObject, IsOptional, IsString } from 'class-validator';
 
-export class CreateSubDto<T> {
+export class UpdateSubDto<T> {
   @IsString()
   @IsOptional()
   ref?: string;
 
   @IsMongoId()
-  @IsNotEmpty()
+  @IsOptional()
   uid: string;
 
   @IsOptional()

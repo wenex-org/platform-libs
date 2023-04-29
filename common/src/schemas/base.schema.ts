@@ -63,7 +63,7 @@ export class Schema<T> {
   @Prop({ type: [String], required: false, index: true })
   tags?: string[];
 
-  constructor(data?: Partial<Schema<T>>) {
+  constructor(data?: Partial<T>) {
     if (data) Object.assign(this, data);
   }
 }

@@ -1,25 +1,28 @@
-import { Exclude } from 'class-transformer';
-import { IsDateString, IsMongoId, IsOptional, IsString } from 'class-validator';
-import { Types } from 'mongoose';
+import { IsDate, IsMongoId, IsOptional, IsString } from 'class-validator';
 
 export class UpdateDto<T> {
+  @IsString()
+  @IsOptional()
+  ref?: string;
+
   @IsMongoId()
   @IsOptional()
   owner: string;
 
   @IsOptional()
   @IsMongoId({ each: true })
-  clients: string[];
-
-  @IsOptional()
-  zones?: string[];
-
-  @IsOptional()
-  @IsMongoId({ each: true })
   shares?: string[];
 
   @IsOptional()
-  @IsDateString()
+  @IsMongoId({ each: true })
+  clients: string[];
+
+  @IsOptional()
+  @IsString({ each: true })
+  groups?: string[];
+
+  @IsDate()
+  @IsOptional()
   created_at: Date;
 
   @IsMongoId()
@@ -30,8 +33,8 @@ export class UpdateDto<T> {
   @IsOptional()
   created_in: string;
 
+  @IsDate()
   @IsOptional()
-  @IsDateString()
   updated_at?: Date;
 
   @IsMongoId()
@@ -42,8 +45,8 @@ export class UpdateDto<T> {
   @IsOptional()
   updated_in?: string;
 
+  @IsDate()
   @IsOptional()
-  @IsDateString()
   deleted_at?: Date;
 
   @IsMongoId()
@@ -54,8 +57,8 @@ export class UpdateDto<T> {
   @IsOptional()
   deleted_in?: string;
 
+  @IsDate()
   @IsOptional()
-  @IsDateString()
   restored_at?: Date;
 
   @IsMongoId()
