@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+require('dotenv').config();
+require('log-node')();
+
 import { CommandFactory } from 'nest-commander';
 
 import { CommandModule } from './command.module';
