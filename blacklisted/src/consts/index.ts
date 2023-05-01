@@ -1,1 +1,1 @@
-export * from './blacklisted.constant';
+export * from './blacklisted.const';
