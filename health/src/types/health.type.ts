@@ -11,7 +11,7 @@ export type Check =
 
 export type HealthCheckOptions = (
   | {
-      [key in Check]:
+      [key in Check]?:
         | {
             key?: string;
             options?: any;
