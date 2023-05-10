@@ -5,7 +5,7 @@ import {
   CLIENT_TTL,
   SYSTEM_UID,
 } from '@app/common/consts';
-import { AppType, GrantType, SysScope } from '@app/common/enums';
+import { AppType, GrantType, Status, SysScope } from '@app/common/enums';
 import { CreateAppDto } from '@app/common/dto';
 import { MongoId } from '@app/common/utils';
 
@@ -17,6 +17,7 @@ export const apps: CreateAppDto[] = [
     name: APP_NAME,
     type: AppType.Web,
     clients: [CID],
+    status: Status.Active,
     version: process.env.npm_package_version,
     access_token_ttl: CLIENT_TTL.DEFAULT_ACCESS_TOKEN,
     refresh_token_ttl: CLIENT_TTL.DEFAULT_REFRESH_TOKEN,
@@ -28,8 +29,8 @@ export const apps: CreateAppDto[] = [
       GrantType.AuthorizationCode,
     ],
     scopes: [SysScope.Whole],
-    created_in: CID,
-    created_by: SYSTEM_UID,
+    created_in: APP_ID ?? CID,
+    created_by: SYSTEM_UID ?? CID,
     created_at: new Date(),
   },
 ];

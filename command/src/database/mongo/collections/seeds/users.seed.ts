@@ -1,4 +1,5 @@
 import {
+  APP_ID,
   CID,
   SYSTEM_PASSWORD,
   SYSTEM_SUBJECT,
@@ -16,8 +17,8 @@ export const users: CreateUserDto[] = [
     username: SYSTEM_USERNAME,
     password: SYSTEM_PASSWORD,
     subjects: [SYSTEM_SUBJECT],
-    created_in: CID,
-    created_by: SYSTEM_UID,
+    created_in: APP_ID ?? CID,
+    created_by: SYSTEM_UID ?? CID,
     created_at: new Date(),
   },
 ];

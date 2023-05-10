@@ -1,4 +1,5 @@
 import {
+  APP_ID,
   CID,
   CLIENT_ID,
   CLIENT_NAME,
@@ -7,7 +8,7 @@ import {
   SYSTEM_DOMAIN,
   SYSTEM_UID,
 } from '@app/common/consts';
-import { GrantType, Plan, SysScope } from '@app/common/enums';
+import { GrantType, Plan, State, Status, SysScope } from '@app/common/enums';
 import { CreateClientDto } from '@app/common/dto';
 import { MongoId } from '@app/common/utils';
 
@@ -20,6 +21,8 @@ export const clients: CreateClientDto[] = [
     clients: [CID],
     client_id: CLIENT_ID,
     client_secret: CLIENT_SECRET,
+    state: State.Approved,
+    status: Status.Active,
     access_token_ttl: CLIENT_TTL.DEFAULT_ACCESS_TOKEN,
     refresh_token_ttl: CLIENT_TTL.DEFAULT_REFRESH_TOKEN,
     scopes: [SysScope.Whole],
@@ -32,8 +35,8 @@ export const clients: CreateClientDto[] = [
       GrantType.AuthorizationCode,
     ],
     expiration_date: new Date('2099-01-01T00:00:00.000Z'),
-    created_in: CID,
-    created_by: SYSTEM_UID,
+    created_in: APP_ID ?? CID,
+    created_by: SYSTEM_UID ?? CID,
     created_at: new Date(),
     otp_services: [],
   },
