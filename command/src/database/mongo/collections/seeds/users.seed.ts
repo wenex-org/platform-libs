@@ -1,6 +1,7 @@
 import {
   APP_ID,
   CID,
+  SYSTEM_EMAIL,
   SYSTEM_PASSWORD,
   SYSTEM_SUBJECT,
   SYSTEM_UID,
@@ -15,6 +16,7 @@ export const users: CreateUserDto[] = [
     _id: MongoId(SYSTEM_UID),
     owner: SYSTEM_UID,
     clients: [CID],
+    email: SYSTEM_EMAIL,
     status: Status.Active,
     username: SYSTEM_USERNAME,
     password: SYSTEM_PASSWORD,
