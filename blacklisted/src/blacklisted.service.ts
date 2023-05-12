@@ -7,8 +7,8 @@ import { BLACKLISTED_PREFIX_KEY } from './consts';
 export class BlacklistedService {
   constructor(private readonly redisService: RedisService) {}
 
-  public async isBlacklisted(...keys: string[]): Promise<boolean> {
-    keys = keys.map((k) => `${BLACKLISTED_PREFIX_KEY}:${k}`);
+  public async isBlacklisted(prefix: string, keys: string[]): Promise<boolean> {
+    keys = keys.map((k) => `${BLACKLISTED_PREFIX_KEY}:${prefix}:${k}`);
     return !!(await this.redisService.exists(...keys));
   }
 
