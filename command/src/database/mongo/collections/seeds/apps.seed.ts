@@ -5,7 +5,7 @@ import {
   CLIENT_TTL,
   SYSTEM_UID,
 } from '@app/common/consts';
-import { AppType, GrantType, Status, SysScope } from '@app/common/enums';
+import { AppType, GrantType, Scope, Status } from '@app/common/enums';
 import { CreateAppDto } from '@app/common/dto';
 import { MongoId } from '@app/common/utils';
 
@@ -28,7 +28,7 @@ export const apps: CreateAppDto[] = [
       GrantType.ClientCredential,
       GrantType.AuthorizationCode,
     ],
-    scopes: [SysScope.Whole],
+    scopes: [Scope.Whole],
     created_in: APP_ID ?? CID,
     created_by: SYSTEM_UID ?? CID,
     created_at: new Date(),

@@ -8,7 +8,7 @@ import {
   SYSTEM_DOMAIN,
   SYSTEM_UID,
 } from '@app/common/consts';
-import { GrantType, Plan, State, Status, SysScope } from '@app/common/enums';
+import { GrantType, Plan, Scope, State, Status } from '@app/common/enums';
 import { CreateClientDto } from '@app/common/dto';
 import { MongoId } from '@app/common/utils';
 
@@ -25,7 +25,7 @@ export const clients: CreateClientDto[] = [
     status: Status.Active,
     access_token_ttl: CLIENT_TTL.DEFAULT_ACCESS_TOKEN,
     refresh_token_ttl: CLIENT_TTL.DEFAULT_REFRESH_TOKEN,
-    scopes: [SysScope.Whole],
+    scopes: [Scope.Whole],
     domains: [SYSTEM_DOMAIN],
     grant_types: [
       GrantType.OTP,
