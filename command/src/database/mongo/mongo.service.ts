@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 
 import { MongoProvider } from './mongo.provider';
 import * as seeds from './collections/seeds';
+import * as mocks from './collections/mocks';
 
 interface MongoCommandOptions {
   collection?: string[] | true;
@@ -25,6 +26,7 @@ export class MongoService extends CommandRunner {
     options?: MongoCommandOptions,
   ): Promise<void> {
     if (passedParams.includes('seed')) await this.seed(options);
+    if (passedParams.includes('mock')) await this.mock(options);
     if (passedParams.includes('drop')) await this.drop(options);
   }
 
@@ -48,6 +50,28 @@ export class MongoService extends CommandRunner {
 
     await this.mongoProvider.close();
     console.log('Mongo seeded ;)');
+  }
+
+  async mock(options?: MongoCommandOptions): Promise<void> {
+    await this.mongoProvider.connect();
+    console.log('Mocking mongo...');
+
+    for (const collectionName of Object.keys(mocks)) {
+      if (this.cond(collectionName, options)) {
+        await this.mongoProvider
+          .db()
+          .collection(collectionName)
+          .insertMany(mocks[collectionName]);
+
+        console.log(
+          '\x1b[32m%s\x1b[0m',
+          `Inserted ${mocks[collectionName].length} documents into the ${collectionName} collection`,
+        );
+      }
+    }
+
+    await this.mongoProvider.close();
+    console.log('Mongo mocked ;)');
   }
 
   async drop(options?: MongoCommandOptions): Promise<void> {

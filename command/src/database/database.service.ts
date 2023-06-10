@@ -24,6 +24,7 @@ export class DatabaseService extends CommandRunner {
     options?: DatabaseCommandOptions,
   ): Promise<void> {
     if (passedParams.includes('seed')) await this.seed(options);
+    if (passedParams.includes('mock')) await this.mock(options);
     if (passedParams.includes('clean')) await this.clean(options);
   }
 
@@ -37,6 +38,18 @@ export class DatabaseService extends CommandRunner {
     if (cond('mongo')) await this.mongoService.seed({ collection: true });
 
     console.log('Database seeded ;)');
+  }
+
+  async mock(options?: DatabaseCommandOptions): Promise<void> {
+    console.log('Mocking database...');
+
+    const cond = (db: string) =>
+      (typeof options?.database === 'boolean' && options.database) ||
+      (typeof options?.database === 'object' && options.database[db]);
+
+    if (cond('mongo')) await this.mongoService.mock({ collection: true });
+
+    console.log('Database mocked ;)');
   }
 
   async clean(options?: DatabaseCommandOptions): Promise<void> {
