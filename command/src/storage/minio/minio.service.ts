@@ -1,9 +1,9 @@
 import { MinioService as NestMinioService } from 'nestjs-minio-client';
 import { Command, CommandRunner, Option } from 'nest-commander';
-import { MINIO_OPTIONS } from '@app/common/configs';
 import { Inject, Injectable } from '@nestjs/common';
+import { MINIO_CONFIG } from '@app/common/configs';
 
-import { MINIO_SERVICE_OPTIONS } from './consts';
+import { MINIO_SERVICE_CONFIG } from './consts';
 
 interface MinioCommandOptions {
   bucket?: string[] | true;
@@ -19,8 +19,8 @@ interface MinioCommandOptions {
 export class MinioService extends CommandRunner {
   constructor(
     private readonly minioService: NestMinioService,
-    @Inject(MINIO_SERVICE_OPTIONS)
-    private readonly minioServiceOptions: ReturnType<typeof MINIO_OPTIONS>,
+    @Inject(MINIO_SERVICE_CONFIG)
+    private readonly minioServiceOptions: ReturnType<typeof MINIO_CONFIG>,
   ) {
     super();
   }

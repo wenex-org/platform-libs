@@ -19,6 +19,7 @@ export const clients: CreateClientDto[] = [
     name: CLIENT_NAME,
     plan: Plan.Platinum,
     clients: [CID],
+    api_key: 'API_KEY',
     client_id: CLIENT_ID,
     client_secret: CLIENT_SECRET,
     state: State.Approved,
