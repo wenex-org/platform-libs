@@ -17,7 +17,7 @@ export class BlacklistedService {
     { prefix, ttl }: { prefix: string; ttl: number },
   ): Promise<'OK'> {
     const key = `${BLACKLISTED_PREFIX_KEY}:${prefix}:${str}`;
-    return this.redisService.set(key, 'true', 'EX', ttl);
+    return this.redisService.setex(key, ttl, 'true');
   }
 
   public async del(str: string, prefix: string): Promise<number> {
