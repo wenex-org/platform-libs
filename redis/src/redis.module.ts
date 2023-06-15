@@ -3,7 +3,7 @@ import type { RedisOptions } from 'ioredis';
 import { Module } from '@nestjs/common';
 
 import { RedisService } from './redis.service';
-import { REDIS_OPTIONS } from './consts';
+import { REDIS_CONFIG } from './consts';
 
 @Module({})
 export class RedisModule {
@@ -12,7 +12,7 @@ export class RedisModule {
       module: RedisModule,
       providers: [
         {
-          provide: REDIS_OPTIONS,
+          provide: REDIS_CONFIG,
           useValue: options,
         },
         RedisService,

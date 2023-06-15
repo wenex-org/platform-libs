@@ -1,1 +1,1 @@
-export const REDIS_OPTIONS = Symbol('REDIS_OPTIONS');
+export const REDIS_CONFIG = Symbol('REDIS_CONFIG');
