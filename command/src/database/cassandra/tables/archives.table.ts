@@ -3,7 +3,7 @@ export const archives = `CREATE TABLE archives (
   timestamp timestamp,
 
   version text,
-  mongo_id text,
+  entity_id text,
   request_id text,
 
   ip inet,
@@ -18,7 +18,7 @@ export const archives = `CREATE TABLE archives (
   req_body text,
   res_body text,
 
-  scope test,
+  scope text,
   action text,
   resource text,
 
