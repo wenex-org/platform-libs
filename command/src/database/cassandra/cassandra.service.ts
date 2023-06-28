@@ -1,5 +1,5 @@
-import { Command, CommandRunner, Option } from 'nest-commander';
 import { CASSANDRA_CONFIG, CASSANDRA_REPLICATION } from '@app/common/configs';
+import { Command, CommandRunner, Option } from 'nest-commander';
 import { Inject, Injectable } from '@nestjs/common';
 import { DseClientOptions } from 'cassandra-driver';
 
