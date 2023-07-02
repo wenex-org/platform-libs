@@ -23,4 +23,5 @@ export const archives = `CREATE TABLE archives (
   resource text,
 
   status int,
+  duration int,
 );`;
