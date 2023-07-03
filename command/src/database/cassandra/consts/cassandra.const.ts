@@ -1,1 +1,0 @@
-export const CASSANDRA_OPTIONS = Symbol('CASSANDRA_OPTIONS');

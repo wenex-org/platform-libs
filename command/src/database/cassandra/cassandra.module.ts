@@ -1,9 +1,9 @@
+import { CassandraProvider } from '@app/common/providers';
 import { DynamicModule, Module } from '@nestjs/common';
+import { CASSANDRA_OPTIONS } from '@app/common/consts';
 import { DseClientOptions } from 'cassandra-driver';
 
-import { CassandraProvider } from './cassandra.provider';
 import { CassandraService } from './cassandra.service';
-import { CASSANDRA_OPTIONS } from './consts';
 
 @Module({})
 export class CassandraModule {

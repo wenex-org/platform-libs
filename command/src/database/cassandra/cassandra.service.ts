@@ -1,10 +1,8 @@
 import { CASSANDRA_CONFIG, CASSANDRA_REPLICATION } from '@app/common/configs';
 import { Command, CommandRunner, Option } from 'nest-commander';
-import { Inject, Injectable } from '@nestjs/common';
-import { DseClientOptions } from 'cassandra-driver';
+import { CassandraProvider } from '@app/common/providers';
+import { Injectable } from '@nestjs/common';
 
-import { CassandraProvider } from './cassandra.provider';
-import { CASSANDRA_OPTIONS } from './consts';
 import * as tables from './tables';
 
 const { keyspace } = CASSANDRA_CONFIG();
@@ -21,10 +19,7 @@ interface CassandraCommandOptions {
   description: 'CassandraDB commands',
 })
 export class CassandraService extends CommandRunner {
-  constructor(
-    private readonly cassandraProvider: CassandraProvider,
-    @Inject(CASSANDRA_OPTIONS) private readonly options: DseClientOptions,
-  ) {
+  constructor(private readonly cassandraProvider: CassandraProvider) {
     super();
   }
 
