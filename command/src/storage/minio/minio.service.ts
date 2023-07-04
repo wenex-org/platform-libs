@@ -43,13 +43,13 @@ export class MinioService extends CommandRunner {
       if (await this.minioService.client.bucketExists(publicBucket)) {
         console.log(
           '\x1b[32m%s\x1b[0m',
-          `Public bucket ${publicBucket} already exists.`,
+          `Public bucket "${publicBucket}" already exists.`,
         );
       } else {
         await this.minioService.client.makeBucket(publicBucket, region);
         console.log(
           '\x1b[32m%s\x1b[0m',
-          `Public bucket ${publicBucket} initialized.`,
+          `Public bucket "${publicBucket}" initialized.`,
         );
         console.log(
           '\x1b[33m%s\x1b[0m',
@@ -62,10 +62,14 @@ export class MinioService extends CommandRunner {
       if (await this.minioService.client.bucketExists(privateBucket)) {
         console.log(
           '\x1b[32m%s\x1b[0m',
-          `Private bucket ${privateBucket} already exists.`,
+          `Private bucket "${privateBucket}" already exists.`,
         );
       } else {
         await this.minioService.client.makeBucket(privateBucket, region);
+        console.log(
+          '\x1b[32m%s\x1b[0m',
+          `Private bucket "${privateBucket}" initialized.`,
+        );
       }
     }
 
